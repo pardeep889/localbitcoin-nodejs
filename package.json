@@ -1,0 +1,60 @@
+{
+  "_from": "localbitcoins-node",
+  "_id": "localbitcoins-node@0.0.3",
+  "_inBundle": false,
+  "_integrity": "sha1-b+gyvYyOgmpOGNLk9NoQAJJLEeQ=",
+  "_location": "/localbitcoins-node",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "localbitcoins-node",
+    "name": "localbitcoins-node",
+    "escapedName": "localbitcoins-node",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/localbitcoins-node/-/localbitcoins-node-0.0.3.tgz",
+  "_shasum": "6fe832bd8c8e826a4e18d2e4f4da1000924b11e4",
+  "_spec": "localbitcoins-node",
+  "_where": "/home/pardeep/Desktop/projects/crypto-broker",
+  "author": {
+    "name": "Anthony Mayfield",
+    "url": "https://github.com/mrmayfield"
+  },
+  "bugs": {
+    "url": "https://github.com/mrmayfield/localbitcoins-node/issues",
+    "email": "contact@anthonymayfield.com"
+  },
+  "bundleDependencies": false,
+  "contributors": [],
+  "dependencies": {
+    "querystring": ">=0.2.0",
+    "request": ">=2.27.0"
+  },
+  "deprecated": false,
+  "description": "LocalBitcoins API wrapper for NodeJS",
+  "engines": {
+    "node": ">=0.10"
+  },
+  "homepage": "https://github.com/mrmayfield/localbitcoins-node#readme",
+  "keywords": [
+    "localbitcoins",
+    "api",
+    "btc",
+    "bitcoin"
+  ],
+  "license": "MIT",
+  "main": "localbitcoins.js",
+  "name": "localbitcoins-node",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrmayfield/localbitcoins-node.git"
+  },
+  "version": "0.0.3"
+}
