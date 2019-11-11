@@ -9,7 +9,7 @@ It exposes all the API methods found here: https://localbitcoins.com/api-docs/ t
 
 Example Usage:
 
-`npm install localbitcoins-node`
+`npm i localbitcoins-changes-nodejs`
 
 ```javascript
 var LBCClient = require(localbitcoins-node);
