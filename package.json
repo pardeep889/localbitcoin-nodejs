@@ -21,11 +21,11 @@
   ],
   "_resolved": "https://registry.npmjs.org/localbitcoins-nodejs/-/localbitcoins-node-0.0.3.tgz",
   "_shasum": "6fe832bd8c8e826a4e18d2e4f4da1000924b11e4",
-  "_spec": "localbitcoins-node",
-  "_where": "/home/pardeep/Desktop/projects/crypto-broker",
+  "_spec": "localbitcoins-nodejs",
+  "_where": "/home/pardeep/Desktop/",
   "author": {
     "name": "Anthony Mayfield",
-    "url": "https://github.com/mrmayfield"
+    "url": "https://github.com/pardeep889"
   },
   "bugs": {
     "url": "https://github.com/pardeep889/localbitcoin-nodejs/issues",
@@ -50,8 +50,8 @@
     "bitcoin"
   ],
   "license": "MIT",
-  "main": "localbitcoins.js",
-  "name": "localbitcoins-node",
+  "main": "index.js",
+  "name": "localbitcoins-changes-nodejs",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pardeep889/localbitcoin-nodejs.git"
