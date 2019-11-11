@@ -1,6 +1,6 @@
 {
-  "_from": "localbitcoins-node",
-  "_id": "localbitcoins-node@0.0.3",
+  "_from": "localbitcoins-nodejs",
+  "_id": "localbitcoins-nodejs@0.0.3",
   "_inBundle": false,
   "_integrity": "sha1-b+gyvYyOgmpOGNLk9NoQAJJLEeQ=",
   "_location": "/localbitcoins-node",
@@ -8,9 +8,9 @@
   "_requested": {
     "type": "tag",
     "registry": true,
-    "raw": "localbitcoins-node",
-    "name": "localbitcoins-node",
-    "escapedName": "localbitcoins-node",
+    "raw": "localbitcoins-nodejs",
+    "name": "localbitcoins-nodejs",
+    "escapedName": "localbitcoins-nodejs",
     "rawSpec": "",
     "saveSpec": null,
     "fetchSpec": "latest"
@@ -19,7 +19,7 @@
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/localbitcoins-node/-/localbitcoins-node-0.0.3.tgz",
+  "_resolved": "https://registry.npmjs.org/localbitcoins-nodejs/-/localbitcoins-node-0.0.3.tgz",
   "_shasum": "6fe832bd8c8e826a4e18d2e4f4da1000924b11e4",
   "_spec": "localbitcoins-node",
   "_where": "/home/pardeep/Desktop/projects/crypto-broker",
@@ -28,8 +28,8 @@
     "url": "https://github.com/mrmayfield"
   },
   "bugs": {
-    "url": "https://github.com/mrmayfield/localbitcoins-node/issues",
-    "email": "contact@anthonymayfield.com"
+    "url": "https://github.com/pardeep889/localbitcoin-nodejs/issues",
+    "email": "pardeep889@hotmail.com"
   },
   "bundleDependencies": false,
   "contributors": [],
@@ -42,7 +42,7 @@
   "engines": {
     "node": ">=0.10"
   },
-  "homepage": "https://github.com/mrmayfield/localbitcoins-node#readme",
+  "homepage": "https://github.com/pardeep889/localbitcoin-nodejs",
   "keywords": [
     "localbitcoins",
     "api",
@@ -54,7 +54,7 @@
   "name": "localbitcoins-node",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mrmayfield/localbitcoins-node.git"
+    "url": "git+https://github.com/pardeep889/localbitcoin-nodejs.git"
   },
-  "version": "0.0.3"
+  "version": "0.0.1"
 }
