@@ -1,7 +1,10 @@
 var request = require('request')
 var crypto		= require('crypto');
 var querystring	= require('querystring');
-var nonce = (new Date).getTime();
+
+function getNonce(){
+	return (new Date).getTime();
+}
 
 
 function LBCClient(key, secret, otp) {
@@ -19,21 +22,29 @@ function LBCClient(key, secret, otp) {
 	 * This method makes a public or private API request.
 	 * @param  {String}   method   The API method (public or private)
 	 * @param  {Object}   params   Arguments to pass to the api call
-	 * @param  {String}   string   The API method (public or private)
 	 * @param  {Function} callback A callback function to be executed when the request is complete
 	 * @return {Object}            The request object
 	 */
 	function api(method, params, callback) {
+		console.log(params);
+		let delete_route = "/";
+		if(params){
+			if(params.ad_id){
+				id = params.ad_id
+				delete_route = `ad-delete/${id}`;// 
+			}
+		}
+
 		var methods = {
 			public: [],
-			private: ['ads','ad-get', 'ad-create','ad-get/ad_id',`ad-delete/${params.ad_id}`, 'myself', 
+			private: ['ads','ad-get', 'ad-create','ad-get/ad_id',`${delete_route}`, 'myself', 
 			'dashboard', 'dashboard/released', 'dashboard/canceled', 'dashboard/closed', 
 			'dashboard/released/buyer', 'dashboard/canceled/buyer', 'dashboard/closed/buyer',
 			'dashboard/released/seller', 'dashboard/canceled/seller', 'dashboard/closed/seller',
 			'wallet-send'
 			]
 		};
-		console.log(params);
+		
 		if(methods.public.indexOf(method) !== -1) {
 			return publicMethod(method, params, callback);
 		}
@@ -74,6 +85,8 @@ function LBCClient(key, secret, otp) {
 		var path	= '/' + method;
 		var url		= config.url + path;
 
+		const nonce = getNonce();
+
 		var signature = getMessageSignature(path, params, nonce);
 
 		var headers = {
@@ -110,7 +123,6 @@ function LBCClient(key, secret, otp) {
 	 * @return {Object}            The request object
 	 */
 	function rawRequest(url, headers, params, callback) {
-
 		var options = {
 			url: url + '/',
 			headers: headers,

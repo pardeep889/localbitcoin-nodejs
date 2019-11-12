@@ -12,8 +12,8 @@ Example Usage:
 `npm i localbitcoins-changes-nodejs`
 
 ```javascript
-var LBCClient = require(localbitcoins-changes-nodejs);
-var lbc = new LBCClient(api_key, api_secret);
+const LBCClient = require(localbitcoins-changes-nodejs);
+const lbc = new LBCClient(api_key, api_secret);
 
 // Display user's info
 lbc.api('myself', null, function(error, data) {
@@ -28,8 +28,8 @@ lbc.api('myself', null, function(error, data) {
 ```
 
 To-Do: 
-- Get different methods working with querystring parameters added to message
+- ad-create
 
 Credit:
 
-Forked from https://github.com/vnistor/
+Forked from https://github.com/pardeep889/
