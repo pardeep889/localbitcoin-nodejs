@@ -16,7 +16,7 @@ const LBCClient = require(localbitcoins-changes-nodejs);
 const lbc = new LBCClient(api_key, api_secret);
 
 // Display user's info
-lbc.api('myself', null, function(error, data) {
+lbc.api('myself', null, "POST", function(error, data) {
     if(error) {
         console.log(error);
     }

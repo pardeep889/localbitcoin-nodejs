@@ -41,7 +41,7 @@ function LBCClient(key, secret, otp) {
 			'dashboard', 'dashboard/released', 'dashboard/canceled', 'dashboard/closed', 
 			'dashboard/released/buyer', 'dashboard/canceled/buyer', 'dashboard/closed/buyer',
 			'dashboard/released/seller', 'dashboard/canceled/seller', 'dashboard/closed/seller',
-			'wallet-send', 'notifications'
+			'wallet-send', 'notifications, recent_messages'
 			]
 		};
 		
