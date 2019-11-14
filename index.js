@@ -22,34 +22,34 @@ function LBCClient(key, secret, otp) {
 	 * This method makes a public or private API request.
 	 * @param  {String}   method   The API method (public or private)
 	 * @param  {Object}   params   Arguments to pass to the api call
+	 * @param  {String}   type     For Get or Post request
 	 * @param  {Function} callback A callback function to be executed when the request is complete
 	 * @return {Object}            The request object
 	 */
-	function api(method, params, callback) {
-		console.log(params);
+	function api(method, params, type ,callback) {
 		let delete_route = "/";
 		if(params){
-			if(params.ad_id){
+			if(params.hasOwnProperty("ad_id")){
 				id = params.ad_id
 				delete_route = `ad-delete/${id}`;// 
 			}
 		}
-
+		// console.log(params);
 		var methods = {
 			public: [],
 			private: ['ads','ad-get', 'ad-create','ad-get/ad_id',`${delete_route}`, 'myself', 
 			'dashboard', 'dashboard/released', 'dashboard/canceled', 'dashboard/closed', 
 			'dashboard/released/buyer', 'dashboard/canceled/buyer', 'dashboard/closed/buyer',
 			'dashboard/released/seller', 'dashboard/canceled/seller', 'dashboard/closed/seller',
-			'wallet-send'
+			'wallet-send', 'notifications'
 			]
 		};
 		
 		if(methods.public.indexOf(method) !== -1) {
-			return publicMethod(method, params, callback);
+			return publicMethod(method, params,type, callback);
 		}
 		else if(methods.private.indexOf(method) !== -1) {
-			return privateMethod(method, params, callback);
+			return privateMethod(method, params,type, callback);
 		}
 		else {
 			throw new Error(method + ' is not a valid API method.');
@@ -60,26 +60,28 @@ function LBCClient(key, secret, otp) {
 	 * This method makes a public API request.
 	 * @param  {String}   method   The API method (public or private)
 	 * @param  {Object}   params   Arguments to pass to the api call
+	 * @param  {String}   type     For Get or Post request
 	 * @param  {Function} callback A callback function to be executed when the request is complete
 	 * @return {Object}            The request object
 	 */
-	function publicMethod(method, params, callback) {
+	function publicMethod(method, params,type, callback) {
 		params = params || {};
 
 		var path	= '/' + method;
 		var url		= config.url + path;
 
-		return rawRequest(url, {}, params, callback);
+		return rawRequest(url, {}, params,type, callback);
 	}
 
 	/**
 	 * This method makes a private API request.
 	 * @param  {String}   method   The API method (public or private)
 	 * @param  {Object}   params   Arguments to pass to the api call
+	 * @param  {String}   type     For Get or Post request
 	 * @param  {Function} callback A callback function to be executed when the request is complete
 	 * @return {Object}            The request object
 	 */
-	function privateMethod(method, params, callback) {
+	function privateMethod(method, params, type, callback) {
 		params = params || {};
 
 		var path	= '/' + method;
@@ -88,6 +90,7 @@ function LBCClient(key, secret, otp) {
 		const nonce = getNonce();
 
 		var signature = getMessageSignature(path, params, nonce);
+		console.log('signature', signature);
 
 		var headers = {
 			'Content-Type': 'application/x-www-form-urlencoded',
@@ -96,7 +99,7 @@ function LBCClient(key, secret, otp) {
 			'Apiauth-Signature': signature
 		};
 
-		return rawRequest(url, headers, params, callback);
+		return rawRequest(url, headers, params, type, callback);
 	}
 
 	/**
@@ -119,17 +122,45 @@ function LBCClient(key, secret, otp) {
 	 * @param  {String}   url      The URL to make the request
 	 * @param  {Object}   headers  Request headers
 	 * @param  {Object}   params   POST body
+	 * @param  {String}   type     For Get or Post request
 	 * @param  {Function} callback A callback function to call when the request is complete
 	 * @return {Object}            The request object
 	 */
-	function rawRequest(url, headers, params, callback) {
+	function rawRequest(url, headers, params, type, callback) {
 		var options = {
 			url: url + '/',
 			headers: headers,
 			form: params,
 		};
-
-		console.log(options);
+		if(type === "GET"){
+			var req = request.get(options, function(error, response, body) {
+				if(typeof callback === 'function') {
+					var data;
+	
+					if(error) {
+						callback.call(self, new Error('Error in server response: ' + JSON.stringify(error)), null);
+						return;
+					}
+	
+					try {
+						data = JSON.parse(body);
+					}
+					catch(e) {
+						callback.call(self, new Error('Could not understand response from server: ' + body), null);
+						return;
+					}
+	
+					if(data.error && data.error.length) {
+						callback.call(self, data.error, null);
+					}
+					else {
+						callback.call(self, null, data);
+					}
+				}
+			});
+	
+			return req;
+		}
 
 		var req = request.post(options, function(error, response, body) {
 			if(typeof callback === 'function') {

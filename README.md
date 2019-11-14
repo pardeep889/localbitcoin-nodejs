@@ -28,7 +28,8 @@ lbc.api('myself', null, function(error, data) {
 ```
 
 To-Do: 
-- ad-create
+- ad-create: done
+- set new parameter post with get or post methods after {params}: done
 
 Credit:
 
