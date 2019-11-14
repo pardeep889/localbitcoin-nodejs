@@ -28,10 +28,16 @@ function LBCClient(key, secret, otp) {
 	 */
 	function api(method, params, type ,callback) {
 		let delete_route = "/";
+		let user_get_route = "/";
+
 		if(params){
 			if(params.hasOwnProperty("ad_id")){
-				id = params.ad_id
+				let id = params.ad_id
 				delete_route = `ad-delete/${id}`;// 
+			}
+			if(params.hasOwnProperty("username")){
+				let id = params.username;
+				user_get_route = `account_info/${id}`;
 			}
 		}
 		// console.log(params);
@@ -41,7 +47,7 @@ function LBCClient(key, secret, otp) {
 			'dashboard', 'dashboard/released', 'dashboard/canceled', 'dashboard/closed', 
 			'dashboard/released/buyer', 'dashboard/canceled/buyer', 'dashboard/closed/buyer',
 			'dashboard/released/seller', 'dashboard/canceled/seller', 'dashboard/closed/seller',
-			'wallet-send', 'notifications, recent_messages'
+			'wallet-send', 'notifications', 'recent_messages', `${user_get_route}`
 			]
 		};
 		
