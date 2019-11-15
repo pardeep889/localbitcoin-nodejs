@@ -29,25 +29,34 @@ function LBCClient(key, secret, otp) {
 	function api(method, params, type ,callback) {
 		let delete_route = "/";
 		let user_get_route = "/";
-
+		let post_chat_message = "/";
+		console.log(params);
 		if(params){
 			if(params.hasOwnProperty("ad_id")){
 				let id = params.ad_id
 				delete_route = `ad-delete/${id}`;// 
 			}
-			if(params.hasOwnProperty("username")){
-				let id = params.username;
-				user_get_route = `account_info/${id}`;
+			if(params.hasOwnProperty("msg")){
+				let id = params.contact_id;
+				params = { msg: params.msg }
+				post_chat_message = `contact_message_post/${id}`
 			}
+			if(params.hasOwnProperty("contact_id")){
+				let id = params.contact_id;
+				params = null;
+				user_get_route = `contact_info/${id}`;
+			}
+			
 		}
-		// console.log(params);
+		
 		var methods = {
 			public: [],
 			private: ['ads','ad-get', 'ad-create','ad-get/ad_id',`${delete_route}`, 'myself', 
 			'dashboard', 'dashboard/released', 'dashboard/canceled', 'dashboard/closed', 
 			'dashboard/released/buyer', 'dashboard/canceled/buyer', 'dashboard/closed/buyer',
 			'dashboard/released/seller', 'dashboard/canceled/seller', 'dashboard/closed/seller',
-			'wallet-send', 'notifications', 'recent_messages', `${user_get_route}`
+			'wallet-send', 'notifications', 'recent_messages', `${user_get_route}`,
+			`${post_chat_message}`
 			]
 		};
 		
@@ -96,7 +105,7 @@ function LBCClient(key, secret, otp) {
 		const nonce = getNonce();
 
 		var signature = getMessageSignature(path, params, nonce);
-		console.log('signature', signature);
+		console.log(params);
 
 		var headers = {
 			'Content-Type': 'application/x-www-form-urlencoded',

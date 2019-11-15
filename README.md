@@ -30,7 +30,10 @@ lbc.api('myself', null, "POST", function(error, data) {
 To-Do: 
 - ad-create: done
 - set new parameter post with get or post methods after {params}: done
+- chat message send on trade: done
 
 Credit:
 
 Forked from https://github.com/pardeep889/
+
+Edited By: Pardeep889@hotmail.com
