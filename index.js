@@ -38,16 +38,14 @@ function LBCClient(key, secret, otp) {
 			if(params.hasOwnProperty("ad_id")){
 				let id = params.ad_id
 				delete_route = `ad-delete/${id}`; 	
-				get_single_ad = `ad-get/${id}`;				
+				get_single_ad = `ad-get/${id}`;
+				update_price_equation= `ad-equation/${params.ad_id}`;				
 			}
 			if(params.hasOwnProperty("contact_id")){
 				let id = params.contact_id;
 				params = null;
 				user_get_route = `contact_info/${id}`;
 				get_chat_sms = `contact_messages/${id}`;
-			}
-			if(params.hasOwnProperty("price_equation")){				
-				update_price_equation= `ad-equation/${params.ad_id}`;
 			}
 		}
 
