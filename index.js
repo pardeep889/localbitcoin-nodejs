@@ -99,10 +99,6 @@ function LBCClient(key, secret, otp) {
 	 * @return {Object}            The request object
 	 */
 	function privateMethod(method, params, type, callback) {
-
-		if(params.hasOwnProperty("price_equation")){				
-			delete params.ad_id;
-		}
 		
 		params = params || {};
 
