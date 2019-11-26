@@ -32,24 +32,28 @@ function LBCClient(key, secret, otp) {
 		let post_chat_message = "/";
 		let get_chat_sms  = "/";
 		let get_single_ad = "/";
+		let update_price_equation = "/";
 
 		if(params){
 			if(params.hasOwnProperty("ad_id")){
 				let id = params.ad_id
 				delete_route = `ad-delete/${id}`; 	
-				get_single_ad = `ad-get/${id}`;
+				get_single_ad = `ad-get/${id}`;				
 			}
 			if(params.hasOwnProperty("contact_id")){
 				let id = params.contact_id;
 				params = null;
 				user_get_route = `contact_info/${id}`;
 				get_chat_sms = `contact_messages/${id}`;
-			}			
+			}
+			if(params.hasOwnProperty("price_equation")){				
+				update_price_equation= `ad-equation/${params.ad_id}`;
+			}
 		}
-		
+
 		var methods = {
 			public: [],
-			private: ['ads','ad-get', 'ad-create',`${get_single_ad}`,`${delete_route}`, 'myself', 
+			private: ['ads','ad-get', 'ad-create',`${get_single_ad}`,`${update_price_equation}`,`${delete_route}`, 'myself', 
 			'dashboard', 'dashboard/released', 'dashboard/canceled', 'dashboard/closed', 
 			'dashboard/released/buyer', 'dashboard/canceled/buyer', 'dashboard/closed/buyer',
 			'dashboard/released/seller', 'dashboard/canceled/seller', 'dashboard/closed/seller',
@@ -95,6 +99,11 @@ function LBCClient(key, secret, otp) {
 	 * @return {Object}            The request object
 	 */
 	function privateMethod(method, params, type, callback) {
+
+		if(params.hasOwnProperty("price_equation")){				
+			delete params.ad_id;
+		}
+		
 		params = params || {};
 
 		var path	= '/' + method;
