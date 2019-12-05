@@ -33,7 +33,8 @@ function LBCClient(key, secret, otp) {
 		let get_chat_sms  = "/";
 		let get_single_ad = "/";
 		let update_price_equation = "/";
-		let cancelTrade = "/"
+		let cancelTrade = "/";
+		let releaseTrade = "/";
 
 		if(params){
 			if(params.hasOwnProperty("ad_id")){
@@ -47,7 +48,8 @@ function LBCClient(key, secret, otp) {
 				params = null;
 				user_get_route = `contact_info/${id}`;
 				get_chat_sms = `contact_messages/${id}`;
-				cancelTrade = `contact_cancel/${id}`
+				cancelTrade = `contact_cancel/${id}`;
+				releaseTrade = `contact_release/${id}`;
 			}
 		}
 
@@ -58,7 +60,7 @@ function LBCClient(key, secret, otp) {
 			'dashboard/released/buyer', 'dashboard/canceled/buyer', 'dashboard/closed/buyer',
 			'dashboard/released/seller', 'dashboard/canceled/seller', 'dashboard/closed/seller',
 			'wallet-send', 'notifications', 'recent_messages', `${user_get_route}`,
-			`${post_chat_message}`, `${get_chat_sms}`, 'dashboard/canceled', `${cancelTrade}`
+			`${post_chat_message}`, `${get_chat_sms}`, 'dashboard/canceled', `${cancelTrade}`,`${releaseTrade}`
 			]
 		};
 		
