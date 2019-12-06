@@ -34,6 +34,7 @@ function LBCClient(key, secret, otp) {
     let update_price_equation = "/";
     let cancelTrade = "/";
     let releaseTrade = "/";
+    let releaseTradeWithPin = "/";
 
     if (params) {
       if (params.hasOwnProperty("msg")) {
@@ -55,6 +56,11 @@ function LBCClient(key, secret, otp) {
         get_chat_sms = `contact_messages/${id}`;
         cancelTrade = `contact_cancel/${id}`;
         releaseTrade = `contact_release/${id}`;
+      }
+      if(params.hasOwnProperty("pincode")){
+        let id = params.contact_id;
+        releaseTradeWithPin = `contact_release_pin/${id}`;
+        delete params.contact_id;
       }
     }
 
@@ -86,7 +92,8 @@ function LBCClient(key, secret, otp) {
         `${get_chat_sms}`,
         "dashboard/canceled",
         `${cancelTrade}`,
-        `${releaseTrade}`
+        `${releaseTrade}`,
+        `${releaseTradeWithPin}`
       ]
     };
 
